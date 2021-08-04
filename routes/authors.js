@@ -24,7 +24,7 @@ router.get('/',async (req,res)=>{
 
 // New Author Route
 router.get('/new', (req, res) => {
-    res.render('authors/new',{author:new Author()})
+    res.render('authors/new',{author:new Author()}) //from schema mangodb
   })
 
 //create Author Route
@@ -34,11 +34,11 @@ router.post('/',async (req,res)=>{
     })
     try{
         const newAuthor= await author.save()
-        res.redirect(`authors`)
+        res.redirect(`authors`) 
 
     } catch {
         res.render('authors/new', {
-          author: author,
+          author: author, //prvent duplicate data
           errorMessage: 'Error creating Author'
         })
 

@@ -1,11 +1,10 @@
-const mongoose =require('mongoose');
+const mongoose = require('mongoose')
 
-const authoSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true
-        //above is common things to setup with schema 
-    }
+const authorSchema = new mongoose.Schema({ //table
+  name: {   //JSON object
+    type: String,
+    required: true
+  }
 })
 
-module.exports = mongoose.model('Author',authoSchema)
+module.exports = mongoose.model('Author', authorSchema) //name,pass parameter
