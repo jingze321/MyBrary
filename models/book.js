@@ -9,11 +9,15 @@ const bookSchema = new mongoose.Schema({ //table
     type: String,
     required: true
   },
-  description: {   //JSON object
+  description: {   
     type: String
   },
   publishDate:{
     type:Date,
+    required: true
+  },
+  pageCount: {
+    type: Number,
     required: true
   },
   createdAt:{
