@@ -3,6 +3,9 @@
 @import 'share/header.css';
 @import 'share/buttons.css';
 @import 'share/form.css';
+@import 'share/authors.css';
+@import 'share/books.css';
+
 
 :root{ /*  initial value */
     font-family:'Gotham Rounded';
@@ -32,4 +35,9 @@ body{
 .page-header{
     font-size: 2rem;
     font-weight: 500;
+}
+
+.error-message{
+    color:red;
+    /* var((--colordanger-hue),100%,50%) */
 }
