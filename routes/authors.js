@@ -2,10 +2,14 @@ const express =require('express'); //get route
 const router =express.Router() //set routers
 const Author =require('../models/author')
 const Book = require('../models/book')
+const {requireAuth,checkUser} = require('../middleware/cookieJwt')
+
+router.get('*',checkUser)
+
 
 //All Authors.Route
 
-router.get('/',async (req,res)=>{
+router.get('/',requireAuth,async (req,res)=>{
     let searchOptions={}
     if (req.query.name!=null&&req.query.name!='') {//if get use query instead of body
         searchOptions.name = new RegExp(req.query.name,'i')
@@ -24,7 +28,7 @@ router.get('/',async (req,res)=>{
 
 
 // New Author Route
-router.get('/new', (req, res) => {
+router.get('/new',requireAuth, (req, res) => {
     res.render('authors/new',{author:new Author()}) //from schema mangodb to the ejs (view file)
   })
 
@@ -61,7 +65,7 @@ router.post('/',async (req,res)=>{
     // res.send(req.body.name)//send data to server (npm body-parser)
 }) //post for creation
 
-router.get('/:id', async (req, res) => {
+router.get('/:id',requireAuth, async (req, res) => {
     // res.send('Show Author'+req.params.id) //parameter from url
     try{
         const author = await Author.findById(req.params.id)
@@ -75,7 +79,7 @@ router.get('/:id', async (req, res) => {
     }
 })  
 
-router.get('/:id/edit', async (req,res)=>{
+router.get('/:id/edit',requireAuth, async (req,res)=>{
     try{
         const author = await Author.findById(req.params.id)
         res.render('authors/edit',{author: author})
@@ -93,7 +97,7 @@ router.put('/:id', async (req, res) => {
       res.redirect(`/authors/${author.id}`)
     } catch {
       if (author == null) {
-        res.redirect('/')
+          res.redirect('/')
       } else {
         res.render('authors/edit', {
           author: author,

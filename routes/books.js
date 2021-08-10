@@ -13,9 +13,15 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'] //store img on 
 //     callback(null, imageMimeTypes.includes(file.mimetype))
 //   }
 // })
+const {requireAuth,checkUser} = require('../middleware/cookieJwt')
+
+
+
+router.get('*',checkUser)
+
 
 // All Books Route
-router.get('/', async (req, res) => {
+router.get('/', requireAuth,async (req, res) => {
 let query =Book.find()
 
 if (req.query.title!=null&& req.query.title!=''){
@@ -39,12 +45,12 @@ if (req.query.publishedAfter!=null&& req.query.publishedAfter!=''){
 })
 
 // New Book Route
-router.get('/new', async (req, res) => {
+router.get('/new', requireAuth,async (req, res) => {
   renderNewPage(res, new Book())
 })
 
 // Create Book Route
-router.post('/',  async (req, res) => { //upload.single('cover'),
+router.post('/',requireAuth,  async (req, res) => { //upload.single('cover'),
   const fileName = req.file != null ? req.file.filename : null
   const book = new Book({
     title: req.body.title,
@@ -74,7 +80,7 @@ router.post('/',  async (req, res) => { //upload.single('cover'),
 // }  //for locol remove
 
 // edit Book Route
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', requireAuth,async (req, res) => {
   try{
 
     const book = await Book.findById(req.params.id)

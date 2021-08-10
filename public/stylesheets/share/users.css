@@ -1,0 +1,10 @@
+.register-container{
+    flex-direction: column;
+    width:50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-link{
+    margin-left: 1rem;
+}

@@ -2,10 +2,18 @@
     <nav class="header-nav">
         <a href="/" class="header-title">MyBook</a>
         <ul>
-            <li><a href="/authors">Authors</a></li>
-            <li><a href="/authors/new">Add Authors</a></li>
-            <li><a href="/books">Books</a></li>
-            <li><a href="/books/new">Add Books</a></li>
+            <% if (locals.user) { %>
+                <li>Welcome <%= locals.user.email %></li>
+                <li><a href="/authors">Authors</a></li>
+                <li><a href="/authors/new">Add Authors</a></li>
+                <li><a href="/books">Books</a></li>
+                <li><a href="/books/new">Add Books</a></li>
+                <li><a href="/user/logout">Log Out</a></li>
+            <% } else { %>
+                
+                <li><a href="/user/logout">Log In</a></li>
+            <% } %>
+            
         </ul>
     </nav>
 </header>
