@@ -3,11 +3,13 @@
     --form-input-background-color: hsl(var(--color-base-hue), 100%, 31%);
     --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
     --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 80%);
+    --form-select-option-background-color:black;
   }
   :root[data-theme='dark']{
     --form-input-background-color: hsl(var(--color-base-hue), 11%, 31%);
     --form-input-border-color: hsl(var(--color-base-hue), 92%, 95%);
     --form-input-border-color-light: hsl(var(--color-base-hue),92%, 95%);
+    --form-select-option-background-color:white;
 }
 
   
@@ -56,13 +58,14 @@
 }
 
 
+
 .form-item textarea{
     height: 100%;
     resize: none;
 }
 
 .form-item select option{
-    background-color:Black;
+    background-color:var(--form-select-option-background-color);
 }
 
 .form-item input:focus, .form-item select:focus,.form-item textarea:focus{
