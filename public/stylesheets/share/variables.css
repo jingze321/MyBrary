@@ -5,4 +5,20 @@
     --color-background-dark:hsl(var(--color-base-hue),100%,8%);
     --color-background-light:hsl(var(--color-base-hue),100%,16%);
     --color-text-light:hsl(var(--color-base-hue),100%,87%);
+
+    /* dark
+     --color-base-hue-dark:86;
+     --color-background1-dark:hsl(var(--color-background-dark),2%, 88%);
+     --color-background1-light:hsl(var(--color-background-dark),2%,100%);
+     --color-text-dark:hsl(var(--color-base-hue-dark),5%, 100%); */
+    
+}
+
+:root[data-theme='dark']{
+    --color-base-hue:34;
+    --color-danger-hue-offset:60;
+    --color-danger-hue:calc(var(--color-base-hue) - var(--color-danger-hue-offset));
+    --color-background-dark:hsl(var(--color-base-hue),7%, 88%);
+    --color-background-light:hsl(var(--color-base-hue),7%, 100%);
+    --color-text-light:hsl(var(--color-base-hue),25%, 6%);
 }

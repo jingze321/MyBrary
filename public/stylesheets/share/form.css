@@ -4,8 +4,13 @@
     --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
     --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 80%);
   }
-  
+  :root[data-theme='dark']{
+    --form-input-background-color: hsl(var(--color-base-hue), 11%, 31%);
+    --form-input-border-color: hsl(var(--color-base-hue), 92%, 95%);
+    --form-input-border-color-light: hsl(var(--color-base-hue),92%, 95%);
+}
 
+  
 .form-row {
     display: flex;
     margin-bottom: .5rem;
@@ -49,6 +54,7 @@
     font-family: 'Gotham Rounded';
     outline: none;
 }
+
 
 .form-item textarea{
     height: 100%;

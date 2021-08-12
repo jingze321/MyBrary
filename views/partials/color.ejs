@@ -1,0 +1,60 @@
+<form action="/color" method="POST" >
+	<div class="color" id="dddd">
+		<form action = "/color" method ="POST">
+			<input type="checkbox" class="checkbox" id="chk" />
+			<!-- onChange="this.form.submit()" -->
+			<label class="label" for="chk">
+				<i class="fa fa-moon-o" style="font-size:20px"></i>
+				<i class="fa fa-sun-o" style="font-size:19px"></i>
+				<div class="ball"></div>
+			</label>
+		</form> 
+	</div>
+</form>
+
+<script>
+		let mode = localStorage.getItem('darkMode-node');
+		
+		if (mode==="null"){
+			console.log(mode)
+			document.getElementById("chk").checked = false
+			document.body.classList.remove('dark');
+			document.documentElement.setAttribute('data-theme', 'dark')
+
+		}else{
+			console.log(mode)
+			document.getElementById("chk").checked = true
+			document.body.classList.add('dark');
+			document.documentElement.setAttribute('data-theme', 'light')
+
+		}
+
+		const enableDarkMode=()=>{
+			document.body.classList.add('dark');
+			document.documentElement.setAttribute('data-theme', 'light')
+
+			localStorage.setItem("darkMode-node",true)
+
+		}
+		const disableDarkMode=()=>{
+			document.body.classList.remove('dark');
+			document.documentElement.setAttribute('data-theme', 'dark')
+			
+			localStorage.setItem("darkMode-node",null)
+		}
+
+		const chk = document.getElementById('chk');
+
+		chk.addEventListener('change', () => {
+			darkMode = localStorage.getItem('darkMode-node')
+			if (darkMode=="null" ){
+				enableDarkMode()
+			} else{
+				disableDarkMode()
+			}
+
+		});
+		
+
+</script>
+

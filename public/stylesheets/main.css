@@ -6,7 +6,18 @@
 @import 'share/authors.css';
 @import 'share/books.css';
 @import 'share/users.css';
+@import 'share/color.css';
+html {
+    --caution:red;
+}
 
+html[data-theme='dark'] {
+    --bg: #333333;
+    --bg-panel: #434343;
+    --color-headings: #3694FF;
+    --color-text: #B5B5B5;
+    --caution:purple;
+}
 :root{ /*  initial value */
     font-family:'Gotham Rounded';
     font-size:20px;
@@ -19,14 +30,18 @@
 
 body{
     background: linear-gradient(to right,var(--color-background-dark),var(--color-background-light));
+    /* transition: 1.0s; */
         
 }
+
 
 .container{
     max-width: 1200px;
     margin: auto;
     margin-bottom: 3rem;
 }
+
+
 
 .inner-container{
     margin: 0 2rem;
@@ -37,7 +52,8 @@ body{
     font-weight: 500;
 }
 
-.error-message{
+.error-message {
     color:red;
     /* var((--colordanger-hue),100%,50%) */
 }
+

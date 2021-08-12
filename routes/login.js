@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt')
 
 router.get('*',checkUser)
 
-
+//access to the webpage
 router.get('/',async (req,res)=>{
     res.cookie('token','',{maxAge: 1})
 
@@ -35,7 +35,10 @@ router.post('/',async (req,res)=>{
 	const user = await User.findOne({ email }).lean()
 
 	if (!user) {
-		return (console.log("Error1"))
+        res.render('users/', {
+            errorMessage: "No Email Found",
+
+          })
 	}
 
 	if (await bcrypt.compare(password, user.password)) {
@@ -55,7 +58,11 @@ router.post('/',async (req,res)=>{
         return res.redirect("/")
 
 	}else{
-        return res.status(400).json('Password Incorrect')
+        res.render('users/', {
+            errorMessage: "password  incorrect",
+            email:email,
+          })
+        
 
     }
     
@@ -66,20 +73,36 @@ router.post('/register',async (req,res)=>{
 
 	if (!email || typeof email !== 'string') {
        
-        return (console.log('e must more than 6'))
+        res.render('users/register', {
+            errorMessage: "Invalid Email",
+            email:email,
+            name:name
+          })
 
         
 	}
 
 	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
         
-        return (console.log('e must more than 6'))
+        res.render('users/register', {
+            errorMessage: "Password Type Incorrect",
+            email:email,
+            name:name
+          })
         
 	}
 
 	if (plainTextPassword.length < 5) {
 		
-        return (console.log('password must more than 6'))
+        // return (console.log('password must more than 6'))
+        
+            res.render('users/register', {
+                errorMessage: "password must be at least 6 characters",
+                email:email,
+                name:name
+              })
+    
+
         
 	}
 
@@ -104,10 +127,12 @@ router.post('/register',async (req,res)=>{
 
     } catch (error) {
         if (error.code === 11000){
-            res.redirect('/user')
+            res.render('users/', {
+                errorMessage: "Email Exists",
+
+              })
         }else {
             res.render('authors/edit', {
-              author: author,
             })
           }
 
@@ -122,13 +147,6 @@ router.get('/logout',requireAuth, (req,res)=>{
     res.cookie('token','',{maxAge: 1})
     res.redirect('/user')
 })
-
-
-
-    
-    
-    
-
 
 
 module.exports = router

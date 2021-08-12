@@ -15,6 +15,8 @@ const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
 const bookRouter =require('./routes/books')
 const loginRouter = require('./routes/login')
+const colorRouter = require('./routes/color')
+
 
 
 
@@ -43,6 +45,8 @@ app.use('/',indexRouter)
 app.use('/user',loginRouter)
 app.use('/authors',authorRouter)
 app.use('/books',bookRouter)
+app.use('/color',colorRouter)
+
 
 app.listen(process.env.PORT || 3000) //set port 3000 default
 

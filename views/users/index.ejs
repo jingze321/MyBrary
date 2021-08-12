@@ -1,23 +1,48 @@
 <h1>Login</h1>
 
 <form class="register-container" action="/user" method="POST">
-    <div class="form-row"}>
+    <div class="form-row">
         <div class="form-item">
             <label>Email:</label>
-            <input type="email" id="email" name="email" required/>
+            <input type="email" id="email" name="email" onkeyup='saveValue(this)' required />
         </div>
     </div>
-    <div class="form-row"}>
+    <div class="form-row">
         <div class="form-item">
             <label>Password:</label>
             <input type="password" id="password" name="password" required/>
         </div>
     </div>
+    <div class="form-row"}>
+        <div class="form-item ">
+            <input type="name" id="name" name="name" value="<%= locals.name %>" style="display: none;"/>
+        </div>
+    </div>
 
-        
+
+    <div >
         <button class="btn btn-primary" type="submit">Login</button>
         <a class="register-link" href="/user/register">Register</a>
 
-
     </div>
 </form>
+
+
+<script type="text/javascript">
+    document.getElementById("email").value = getSavedValue("email");    // set the value to this input
+
+    //Save the value function - save it to localStorage as (ID, VALUE)
+    function saveValue(e){
+        var id = e.id;  // get the sender's id to save it . 
+        var val = e.value; // get the value. 
+        localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+    }
+
+    //get the saved value function - return the value of "v" from localStorage. 
+    function getSavedValue  (v){
+        if (!localStorage.getItem(v)) {
+            return "";// You can change this to your defualt value. 
+        }
+        return localStorage.getItem(v);
+    }
+</script>
